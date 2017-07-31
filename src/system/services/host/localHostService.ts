@@ -1,16 +1,17 @@
-
+import { inject } from "inversify";
 import * as restify from 'restify';
 
-import * as fs from 'fs';
-import { IHostService } from "../../contract/contracts";
+import * as contracts from "../../contract/contracts";
 import { serviceBase, configBase } from "../serviceBase";
 
-export class localHostService extends configBase implements IHostService{
+export class localHostService extends configBase implements contracts.IHostService{
 
     private _server: restify.Server;
+    private _uploadService:contracts.IUploadService;
 
-    constructor() {
+    constructor(@inject(contracts.contractSymbols.IUploadService) uploadService:contracts.IUploadService) {
         super();
+        this._uploadService = uploadService;
     }
 
     init(){
@@ -34,13 +35,11 @@ export class localHostService extends configBase implements IHostService{
                 console.log("data");
             });
 
-            req.on('end', ()=>{
+            req.on('end', async ()=>{
                 
                 var result = Buffer.concat(buffer);
-
-                fs.writeFileSync(`C:\\Users\\jak\\demo\\demo20\\test.jpg`, result);
-                
-                res.send({person:"Jordan"});
+                var uploadResult = await this._uploadService.checkImage(result);                
+                res.send(uploadResult);
                 return next();
             });
         });

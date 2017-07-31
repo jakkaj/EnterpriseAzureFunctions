@@ -17,6 +17,7 @@ import { netClient } from "./system/helpers/netClient";
 import { configBase } from "./system/services/serviceBase";
 import cognitiveService from "./system/services/cognitive/cognitiveService";
 import faceService from "./system/services/cognitive/faceService";
+import { uploadService } from "./system/services/uploadService";
 
 /**
  * Main startup class. Composes the app components in to the inversify IOC container
@@ -72,11 +73,16 @@ export default class startup {
         this._container.bind<contracts.INetClient>(contracts.contractSymbols.INetClient)
             .to(netClient).inSingletonScope();
 
+        this._container.bind<contracts.IUploadService>(contracts.contractSymbols.IUploadService)
+            .to(uploadService).inSingletonScope();
+
         this._container.bind<contracts.ICognitiveService>(contracts.contractSymbols.ICognitiveService)
             .to(cognitiveService).inSingletonScope();
 
         this._container.bind<contracts.IFaceService>(contracts.contractSymbols.IFaceService)
             .to(faceService).inSingletonScope();
+
+
 
     }
     /**

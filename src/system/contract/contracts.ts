@@ -25,13 +25,22 @@ export interface IFaceService{
     detectFaces(face:Buffer):Promise<CognitiveFace[]>;
 }
 
+export interface IUploadService{
+    checkImage(image: Buffer): Promise<checkFaceResult>;
+}
+
+export interface checkFaceResult{
+    Faces:CognitiveFace[];
+}
+
 let contractSymbols = {
     ILogService: Symbol("ILogService"),    
     IConfig: Symbol("IConfig"),
     IHostService: Symbol("IHostService"),  
     INetClient: Symbol("INetClient"),
     ICognitiveService: Symbol("ICognitiveService"),
-    IFaceService: Symbol("IFaceService")
+    IFaceService: Symbol("IFaceService"),
+    IUploadService: Symbol("IUploadService")
   
 }
 
