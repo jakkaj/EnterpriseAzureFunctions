@@ -2,7 +2,9 @@
 import { ILogService } from "../contract/contracts";
 import { injectable, inject } from "inversify";
 import * as contracts from "../contract/contracts";
-
+/**
+ * Service to abstract logging so it will work across platforms (i.e local console, or context.log in Azure Functions)
+ */
 @injectable()
 class logService implements ILogService {
     

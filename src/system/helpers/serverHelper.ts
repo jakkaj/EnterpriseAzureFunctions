@@ -3,6 +3,9 @@
 
 import { serverTypes } from "../contract/systemEntities";
 
+/**
+ * Detect the server type - local or Azure Functions (and room for AWS Lambda, but not there yet)
+ */
 export class serverHelper {
     public getServerType(): serverTypes {
         if (process.env.FUNCTIONS_EXTENSION_VERSION) {

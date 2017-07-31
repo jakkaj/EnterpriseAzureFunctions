@@ -8,6 +8,9 @@ import { serviceBase } from "../serviceBase";
 import { injectable, inject } from "inversify";
 
 
+/**
+ * Service host that is registered when the system detects it's running inside Azure Functions
+ */
 export class azureFunctionsHostService extends serviceBase implements contracts.IHostService{
 
     private _uploadService:contracts.IUploadService;
@@ -26,7 +29,12 @@ export class azureFunctionsHostService extends serviceBase implements contracts.
     init(){
         
     }
-
+    /**
+     * Function that is returned via module export to functions for callbacks when function is triggered
+     * @param  {HttpContext} context - Azure Functions context
+     * @param  {IFunctionRequest} req - Azure Functions request
+     * @returns any
+     */
     private _azureFunctionsHead(context:HttpContext, req:IFunctionRequest):any{
         this._context = context;
         this.log("Azure Context");        
@@ -56,6 +64,11 @@ export class azureFunctionsHostService extends serviceBase implements contracts.
         f();
     }
 
+    
+    /**
+     * Log callback for other components to use (such as logger) that works with Azure Functions context
+     * @param  {string} message
+     */
     public log(message:string){
         if(this._context){
             this._context.log(message);
@@ -64,6 +77,11 @@ export class azureFunctionsHostService extends serviceBase implements contracts.
         }   
     }
 
+    
+    /**
+     * Return the _azureFunctionsHead function so it may be exposed as a module as the entry point for Azure Functions. 
+     * @returns any
+     */
     public get export():any{
         return this._azureFunctionsHead;
     }
