@@ -40,7 +40,7 @@ export default class cognitiveService extends serviceBase implements contracts.I
                     'Accept': 'application/json'
                 }
             }
-
+            this.logger.log(`Posting to ${url}`);
             var r = request.post(options, (error:any, response:request.RequestResponse, body:any)=>{
                 if(error){
                     bad(error);

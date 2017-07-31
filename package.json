@@ -8,7 +8,7 @@
     "build": "tsc",
     "prewatch": "typings install",
     "watch": "tsc -w --project ./src/tsconfig.json",
-    "outputwatch": "nodemon ./output/run/app.js",
+    "outputwatch": "nodemon ./output/run/CognitiveRun/app.js",
     "test": "tsc --project ./tests/tsconfig.json && ava ./output/test/tests/run/**/*.js",
     "testwatchbuild": "tsc -w --project ./tests/tsconfig.json",
     "testwatchava": "ava -w ./output/test/tests/run/**/*.js"

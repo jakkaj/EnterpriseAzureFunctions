@@ -31,6 +31,7 @@ export interface IUploadService{
 
 export interface checkFaceResult{
     Faces:CognitiveFace[];
+    IsResult:boolean;
 }
 
 let contractSymbols = {

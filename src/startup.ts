@@ -97,7 +97,8 @@ export default class startup {
             port: process.env.port || process.env.PORT || "8082",
             face_key: process.env.FACE_KEY,
             vision_key: process.env.VISION_KEY,
-            cog_services_base: process.env.COG_SERVICES_BASE
+            cog_services_base: process.env.COG_SERVICES_BASE,
+            serverType: sh.getServerType()
         }
 
         return this._config;

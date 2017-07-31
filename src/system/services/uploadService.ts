@@ -21,13 +21,14 @@ export class uploadService extends serviceBase implements contracts.IUploadServi
 
     public async checkImage(image: Buffer): Promise<contracts.checkFaceResult> {       
         
-
+        this.logger.log("Starting check image");
         var result = await Promise.all([this._faceService.detectFaces(image)]);
-
+        this.logger.log("Checking complete");
         var faceResult = result[0]
 
         var thisResult:contracts.checkFaceResult = {
-           Faces:faceResult 
+           Faces:faceResult,
+           IsResult: true           
         };
 
         return thisResult;
