@@ -1,0 +1,36 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "0.1.0",
+	"tasks":[	
+				
+		{
+			"taskName": "build:dev:fast",
+			"command": "tsc",
+			"isShellCommand": true,
+			"args": ["-p", "./src", "-w"],
+			"showOutput": "silent",			
+			"problemMatcher": "$tsc",
+			"isBuildCommand": true
+		},
+		{
+			"taskName": "build:test:fast",
+			"isTestCommand": false,
+			"command": "tsc",
+			"isShellCommand": true,
+			"args": ["-p", "./tests"],
+			"showOutput": "always"			
+		},
+		{
+			"taskName": "test:ava",
+			"isTestCommand": true,
+			"command": "npm",
+			"isShellCommand": true,
+			"args": ["run", "test"],
+			"showOutput": "always"
+			
+		}
+	]
+	
+	
+}
