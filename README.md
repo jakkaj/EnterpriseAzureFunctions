@@ -4,6 +4,14 @@
 
 This project is a sample of how one might go about building a nicely composed TypeScript based, testable, IOC based codebase for working with Azure Functions or other similar technologies. 
 
+```typescript
+constructor(@inject(contracts.contractSymbols.ICognitiveService) cognitiveService:contracts.ICognitiveService) {
+        super();
+        this._cognitiveService = cognitiveService;
+    }
+```
+*Publish and consume dependencies in a nice way*
+
 Most samples are basic. Sure they get the job done, but in reality when we want to write production code, we may like to follow some of the regular tenets of software design like SOLID, IOC and importantly testability + what ever other acronym or initialism you may like to throw at it.
 
 This code sample is meant to be a starter project to help with that. 
