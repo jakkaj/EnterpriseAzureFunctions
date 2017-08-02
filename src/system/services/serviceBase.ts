@@ -2,7 +2,9 @@ import { inject, injectable, Container } from "inversify";
 
 import * as contracts from "../contract/contracts";
 import { IConfig } from "../contract/systemEntities";
-
+/**
+ * Base class for services to expose some commonly required services such as DI object resolution and config
+ */
 @injectable()
 export class configBase{
 
@@ -16,6 +18,9 @@ export class configBase{
     }
 }
 
+/**
+ * Base class for services to expose some commonly required services such as DI object resolution and config
+ */
 @injectable()
 export class serviceBase extends configBase{    
     @inject(contracts.contractSymbols.ILogService)
