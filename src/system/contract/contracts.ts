@@ -1,6 +1,6 @@
 
 
-import { CognitiveFace } from "../services/cognitive/cognitiveContract";
+import { CognitiveFace, CognitiveFaceResult } from "../services/cognitive/cognitiveContract";
 
 export interface ILogService {
     log(logMessage: string);
@@ -23,6 +23,7 @@ export interface ICognitiveService{
 
 export interface IFaceService{
     detectFaces(face:Buffer):Promise<CognitiveFace[]>;
+    validateFaces(face:Buffer):Promise<CognitiveFaceResult>;
 }
 
 export interface IUploadService{

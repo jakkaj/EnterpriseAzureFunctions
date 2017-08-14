@@ -60,5 +60,10 @@ export interface CognitiveFace {
     faceAttributes: FaceAttributes;
 }
 
+export interface CognitiveFaceResult {
+    faces: CognitiveFace[];   
+    isPositive: boolean;
+}
+
 
 

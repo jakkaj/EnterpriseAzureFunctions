@@ -33,4 +33,36 @@ export default class faceService extends serviceBase implements contracts.IFaceS
         var result = await this._cognitiveService.postJson<Buffer, cogContracts.CognitiveFace[]>(faceUrl, face, this.config.face_key);
         return result;
     }
+
+    public async validateFaces(face:Buffer):Promise<cogContracts.CognitiveFaceResult>{
+        var result:cogContracts.CognitiveFace[] = await this.detectFaces(face);
+
+        var facesResult:cogContracts.CognitiveFaceResult = {
+            faces: result,
+            isPositive: false
+        }
+
+        if(!result || result.length == 0){
+            facesResult;
+        }
+
+        var hasMoreThanOnePerson: boolean = result.length > 1;
+
+        var someoneHasGlasses: boolean = false;
+
+        for(var i in result){
+            var detectedFace = result[i];
+            console.log(`Glasses: ${detectedFace.faceAttributes.glasses}`);
+            if(detectedFace.faceAttributes.glasses !== 'NoGlasses'){
+                someoneHasGlasses = true;
+            }
+        }
+
+        var facesResult:cogContracts.CognitiveFaceResult = {
+            faces: result,
+            isPositive: hasMoreThanOnePerson && someoneHasGlasses
+        }
+
+        return facesResult;
+    }
 }
