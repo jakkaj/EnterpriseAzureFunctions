@@ -53,7 +53,7 @@ export default class faceService extends serviceBase implements contracts.IFaceS
         for(var i in result){
             var detectedFace = result[i];
             console.log(`Glasses: ${detectedFace.faceAttributes.glasses}`);
-            if(detectedFace.faceAttributes.glasses !== 'NoGlasses'){
+            if(detectedFace.faceAttributes.glasses != 'NoGlasses'){
                 someoneHasGlasses = true;
             }
         }

@@ -31,7 +31,7 @@ export interface IUploadService{
 }
 
 export interface checkFaceResult{
-    Faces:CognitiveFace[];
+    FacesResult:CognitiveFaceResult;
     IsResult:boolean;
 }
 
